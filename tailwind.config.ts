@@ -1,7 +1,8 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
-	darkMode: ["class"],
+	darkMode: ["class"], // Kept as it's a setup, PRD doesn't forbid it, but no .dark CSS vars are defined per PRD.
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -61,13 +62,29 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        // PRD Chart Colors
+        chart: {
+          '1': '#E94E77',
+          '2': '#FFC36F',
+          '3': '#6AB6EC',
+          '4': '#97F3A6',
+          '5': '#8E83EF',
+        },
+        // Specific accent colors from PRD if needed directly
+        accentBlue: '#299CDB',
+        accentGreen: '#0AB39C',
+        accentRed: '#F06548',
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+        // Shadcn UI convention based on --radius variable
+				lg: 'var(--radius)', // default rounded-md from PRD (0.375rem)
+				md: 'calc(var(--radius) - 2px)', // smaller than default
+				sm: 'calc(var(--radius) - 4px)'  // smallest
 			},
+      fontFamily: {
+        sans: ['Nunito', ...defaultTheme.fontFamily.sans], // PRD: typography.primaryFont
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
